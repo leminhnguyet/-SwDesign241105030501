@@ -1,1 +1,7 @@
 
+![Class Diagram](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3bToJc9niK9eSMgHGZMNWe92S4bHPbwwGbvYRYeIDpKtCJC7n2zAJSyiBaajqj3agkM2QdPCoStCGz5Tb9y3rfsRc9UOdWeol1YY0MoFJOskBaGJbqDgNWh85G00003__mC0)
+
+![Use Case Diagram](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3bTYSab-aK9eSMeHLsbnQd9YSQg2qf49HvhpqXMo3-zLKaWiLWXrDiIGoyjuk6jj0LJQY8iBP822hguTIB62bK98niFT6vCLCZ8VxcxFGvOqmf1qICrB0Ja40000__y30000)
+
+![Package Diagram](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3bT1Od9sOdggWb9Qebv9KM9cNcPUkbvgNabcIMPgiP92DPU2Gd9EOd6nGcXnQX5NBHTs3K2vifpK4cJrGQdfcSKbgKN142cGLZGX1LrTEx2n2bOAnGzthrL8URXxQLuwbqDgNWh8QG00003__mC0)
+
