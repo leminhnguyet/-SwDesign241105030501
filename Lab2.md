@@ -41,4 +41,111 @@
     - Hệ thống tạo báo cáo tổng quan và lưu trữ.
     - Báo cáo được cung cấp cho phòng kế toán để kiểm tra.
 
-  
+# Lab2 - PayrollSystem Project
+## Code Implementation
+### Timecard.java
+```java
+package com.payrollsystem;
+
+import java.time.LocalDateTime;
+
+public class Timecard {
+    private int employeeId;
+    private LocalDateTime clockInTime;
+    private LocalDateTime clockOutTime;
+    
+    public Timecard(int employeeId, LocalDateTime clockInTime) {
+        this.employeeId = employeeId;
+        this.clockInTime = clockInTime;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public LocalDateTime getClockInTime() {
+        return clockInTime;
+    }
+
+    public LocalDateTime getClockOutTime() {
+        return clockOutTime;
+    }
+
+    public void clockOut(LocalDateTime clockOutTime) {
+        this.clockOutTime = clockOutTime;
+    }
+
+    public long getTotalHoursWorked() {
+        if (clockOutTime != null) {
+            return java.time.Duration.between(clockInTime, clockOutTime).toHours();
+        }
+        return 0;
+    }
+}
+```
+
+### TimecardManager.java:
+```java
+package com.payrollsystem;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TimecardManager {
+    private List<Timecard> timecards;
+
+    public TimecardManager() {
+        this.timecards = new ArrayList<>();
+    }
+
+    public void clockIn(int employeeId, LocalDateTime clockInTime) {
+        Timecard timecard = new Timecard(employeeId, clockInTime);
+        timecards.add(timecard);
+        System.out.println("Employee " + employeeId + " clocked in at " + clockInTime);
+    }
+
+    public void clockOut(int employeeId, LocalDateTime clockOutTime) {
+        for (Timecard timecard : timecards) {
+            if (timecard.getEmployeeId() == employeeId && timecard.getClockOutTime() == null) {
+                timecard.clockOut(clockOutTime);
+                System.out.println("Employee " + employeeId + " clocked out at " + clockOutTime);
+                break;
+            }
+        }
+    }
+
+    public void printTimecards() {
+        for (Timecard timecard : timecards) {
+            System.out.println("Employee " + timecard.getEmployeeId() + ": Clock In: " + timecard.getClockInTime() + ", Clock Out: " + timecard.getClockOutTime() + ", Hours Worked: " + timecard.getTotalHoursWorked());
+        }
+    }
+}
+```
+
+### Main.java:
+```java
+package com.payrollsystem;
+
+import java.time.LocalDateTime;
+
+public class Main {
+    public static void main(String[] args) {
+        // Tạo TimecardManager để quản lý các Timecard
+        TimecardManager manager = new TimecardManager();
+        
+        // Mô phỏng nhân viên 1 clock in và clock out
+        manager.clockIn(101, LocalDateTime.of(2024, 11, 11, 9, 0, 0, 0));
+        manager.clockOut(101, LocalDateTime.of(2024, 11, 11, 17, 0, 0, 0));
+        
+        // Mô phỏng nhân viên 2 clock in và clock out
+        manager.clockIn(102, LocalDateTime.of(2024, 11, 11, 8, 30, 0, 0));
+        manager.clockOut(102, LocalDateTime.of(2024, 11, 11, 16, 30, 0, 0));
+        
+        // In ra các thông tin Timecard
+        manager.printTimecards();
+    }
+}
+```
+
+
