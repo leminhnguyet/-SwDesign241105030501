@@ -11,20 +11,24 @@
 - **Employee**: Xem và cập nhật thông tin cá nhân (nếu có quyền).
 
 ### Luồng chính:
-1. Tác nhân đăng nhập vào hệ thống.
-2. Tác nhân chọn "Manage Employee Information".
-3. Tác nhân tìm kiếm hoặc chọn nhân viên cần cập nhật thông tin.
-4. Tác nhân chỉnh sửa thông tin nhân viên hoặc thêm mới nhân viên.
-5. Hệ thống cập nhật dữ liệu vào cơ sở dữ liệu.
+1. Quản trị viên đăng nhập vào hệ thống.
+2. Quản trị viên chọn mục "Manage Employee Information" trong menu quản lý.
+3. Hệ thống hiển thị danh sách thông tin nhân viên hiện có.
+4. Quản trị viên chọn thêm, sửa hoặc xóa thông tin nhân viên.
+5. Nếu thêm nhân viên mới, hệ thống yêu cầu nhập các thông tin cần thiết và xác nhận.
+6. Nếu sửa, hệ thống hiển thị thông tin của nhân viên để chỉnh sửa.
+7. Nếu xóa, hệ thống yêu cầu xác nhận việc xóa nhân viên khỏi hệ thống.
+8. Sau khi thực hiện thao tác, hệ thống cập nhật dữ liệu và thông báo kết quả thành công hoặc thất bại.
 
 ### Luồng thay thế:
 - Nếu nhập thông tin không hợp lệ (ví dụ: định dạng số điện thoại sai), hệ thống sẽ yêu cầu nhập lại.
+- - Nếu nhân viên không tồn tại trong cơ sở dữ liệu khi sửa hoặc xóa, hệ thống sẽ thông báo lỗi.
 
 ### Lý do thiết kế:
-- Việc quản lý thông tin nhân viên là cơ sở quan trọng để tính toán lương và thực hiện các chức năng khác của hệ thống. Điều này đảm bảo tính chính xác của các thông tin cần thiết.
+- Việc quản lý thông tin nhân viên là một phần quan trọng của hệ thống Payroll System, giúp đảm bảo tính chính xác trong quá trình tính toán và trả lương. Bằng cách cho phép quản trị viên dễ dàng cập nhật, sửa đổi hoặc xóa thông tin, hệ thống sẽ luôn duy trì cơ sở dữ liệu nhân viên chính xác và đầy đủ.
 
 ### PlantUML Use Case:
-![Use Case](https://www.planttext.com/api/plantuml/png/J8-n2i9038RtF4MulHHN1wc8WuDOaBg7DfR2NQxSfPH3V3877ybNq6efRY7vllydhyUpY4f11sU1QlK1juthP9xthhS-CGC4hfMajOocf1IyjNXEKTaPl07Y4Bcc-3aUIQZbHSI3N7rmf9qNWnInsgtW3l0jmIpRJ0jSewdwXfJpMPyi0ql87tVfUCn_C9v6cSc2fPa-U0C00F__0m00)
+![Biểu đồ](https://www.planttext.com/api/plantuml/png/n9CzJWCn48Lxds9AAABq52WHIK5BJZ3iJC2IVu8zteYpKN0ahe3jRAALjLcemCKKtldclRUslpu-Lr4mIB96OIS-m9giTgfMMDp3rXwCVsVUSUXrntVmn6-9eu1uiEZmXO675Y0KL0rGPcpo_ZF62alGt8yOxVPUdHjWCQqeARX6vhh1DT5oIrgM6pOihHGQAHtW-7ZveY2lMTyxp9x7oCb4uUQzFtYtry6YQE-cPJ9LisIHLt-4cBgEOmIRI_cvDsS0a8ZfLh79MYNVX9UVCwH3RcRwpno3XI59UqY_otAL-hCKL1sK58xgfNfqFHfDCm6QsHn2VcwNoMF-D7MLItcNtm000F__0m00)
 
 ---
 
@@ -39,96 +43,118 @@
 - **Admin**: Quản lý và xem lại giờ làm việc của nhân viên.
 
 ### Luồng chính:
-1. Nhân viên đăng nhập vào hệ thống.
-2. Nhân viên chọn "Maintain Timecard".
-3. Nhân viên nhập giờ bắt đầu, giờ kết thúc, và thời gian nghỉ.
-4. Hệ thống kiểm tra tính hợp lệ và lưu trữ thời gian làm việc vào cơ sở dữ liệu.
-5. Admin có thể truy xuất và chỉnh sửa giờ làm việc của nhân viên nếu cần.
+1. Nhân viên đăng nhập vào hệ thống và chọn mục "Manage Timecard".
+2. Hệ thống hiển thị danh sách các thẻ công hiện tại của nhân viên.
+3. Nhân viên chọn ngày hoặc khoảng thời gian muốn chỉnh sửa.
+4. Nhân viên nhập hoặc chỉnh sửa giờ vào, giờ ra, và số giờ làm việc.
+5. Hệ thống tính toán tổng số giờ làm việc dựa trên thông tin đã nhập.
+6. Nhân viên lưu thông tin thẻ công.
+7. Hệ thống lưu và cập nhật thẻ công của nhân viên vào cơ sở dữ liệu.
 
 ### Luồng thay thế:
 - Nếu thông tin giờ làm việc không hợp lệ (ví dụ: chồng lấn giờ, thiếu thông tin), hệ thống sẽ thông báo lỗi và yêu cầu nhân viên nhập lại.
+- Nếu nhân viên không có quyền chỉnh sửa thẻ công của mình (trong trường hợp là Admin), hệ thống sẽ yêu cầu Admin thực hiện thao tác này.
+- Nếu có lỗi kết nối với cơ sở dữ liệu khi lưu thẻ công, hệ thống sẽ thông báo lỗi và yêu cầu thử lại sau.
 
 ### Lý do thiết kế:
-- Quản lý thời gian làm việc là rất quan trọng trong việc tính toán chính xác lương. Cung cấp khả năng kiểm tra và chỉnh sửa cho admin giúp hệ thống linh hoạt và dễ dàng kiểm tra tính chính xác của các dữ liệu.
-
-### PlantUML Use Case:
-![Use Case](https://www.planttext.com/api/plantuml/png/J8uz2i9048NxESLZ-pIM5XAHT0O4um66P5WMzaTs9qKGJsRXaRo2IL2ncE9zxsDcNezdNPIpZi4Jzveocd3rQHBvnFqGN2JAqYj7wmNcn5DEtkCy5PLWS2DWBD9pcSkMNTHvqBamepmOSC7biA4xqNSrgcgtC6nXcgYILnl7P0sjz_w5bYDR-Hd5K2rnMFvz0m00__y30000)
+- Việc quản lý thẻ công là cần thiết để tính toán chính xác số giờ làm việc của nhân viên và từ đó tính lương cho họ. Ca sử dụng này giúp đảm bảo nhân viên có thể dễ dàng cập nhật và theo dõi thời gian làm việc của mình, đồng thời quản trị viên có thể kiểm tra và chỉnh sửa khi cần thiết.
+  
+### PlantUML :
+![Biểu đồ](https://www.planttext.com/api/plantuml/png/h5DBJiCm4Dtx5BCaYrw01Me5BDXIBZ34KseHs-budAXdOy6Hk0AJA8vGWL8eNbYQyRoFzUotbzTb4cJ9lZ5OIsIuzMqJzqHJkRBU1LEQiBY21-UfHhPhuixLT0dtjCkK12H2vwW7HP5rMa-3vW0naDoWu2Ec4ItigADv7AoUcJ80Ywyb9NCuW1mrUHVQBBErFl8pR6FcTDpS6dzfx3g6ZMEFucBuJAs8ObAvjx67bEkQKWAl6puHN1GC99MsbS56r7k7ZPlqGTS9nCIibvrfFr9KXe8rOx1_oXCsGwSyazF2BUFdf_ozxpCYpgroa_tVg4UdF-OyILTcgQaCt_0T003__mC0)
 
 ---
 
 ## 3. Process Payroll
 
 ### Mô tả:
-- Ca sử dụng này cho phép quản trị viên xử lý bảng lương cho tất cả nhân viên dựa trên thời gian làm việc đã nhập và các yếu tố khác như phụ cấp, thuế, bảo hiểm.
+- Ca sử dụng này cho phép hệ thống tính toán và xử lý lương cho nhân viên dựa trên các yếu tố như số giờ làm việc, mức lương cơ bản, các khoản phụ cấp, và các khoản khấu trừ. Sau khi lương được tính toán, hệ thống sẽ thực hiện các giao dịch thanh toán cho nhân viên.
 
 ### Tác nhân:
-- **Admin**: Quản trị viên sẽ khởi động quá trình tính lương cho tất cả nhân viên.
-- **Employee**: Nhân viên nhận phiếu lương.
+- **Admin**: Quản trị viên, người có thể khởi tạo và quản lý quá trình xử lý lương.
+- **BankSystem**: Hệ thống ngân hàng, thực hiện các giao dịch thanh toán lương cho nhân viên.
+- **PrintService**: Hệ thống in ấn, in bảng lương cho nhân viên.
+- **ProjectManagementDatabase**: Cung cấp thông tin về giờ làm việc của nhân viên để tính lương.
 
 ### Luồng chính:
 1. Quản trị viên đăng nhập vào hệ thống và chọn "Process Payroll".
-2. Hệ thống lấy dữ liệu về thời gian làm việc từ **Maintain Timecard**.
-3. Hệ thống áp dụng các quy tắc tính lương, bao gồm thuế và các phụ cấp.
-4. Hệ thống tạo ra bảng lương cho tất cả nhân viên và lưu trữ kết quả vào cơ sở dữ liệu.
+2. Hệ thống lấy thông tin về giờ làm việc của nhân viên từ ProjectManagementDatabase.
+3. Hệ thống tính toán lương dựa trên số giờ làm việc, mức lương cơ bản, phụ cấp và khấu trừ.
+4. Hệ thống tạo bảng lương cho tất cả nhân viên và lưu trữ bảng lương trong cơ sở dữ liệu.
+5. Hệ thống gửi yêu cầu thanh toán cho BankSystem để thực hiện các giao dịch chuyển tiền cho nhân viên.
+6. BankSystem thực hiện thanh toán và phản hồi kết quả cho hệ thống.
+7. Hệ thống gửi yêu cầu in bảng lương cho PrintService.
+8. PrintService in bảng lương cho nhân viên và gửi lại kết quả cho hệ thống.
+9. Hệ thống hoàn tất và thông báo đã hoàn thành quá trình xử lý lương.
 
 ### Luồng thay thế:
-- Nếu có lỗi trong quá trình tính toán (thiếu thông tin, sai dữ liệu), hệ thống sẽ thông báo lỗi và yêu cầu chỉnh sửa thông tin.
+- Nếu hệ thống không thể kết nối với ProjectManagementDatabase để lấy thông tin giờ làm việc, hệ thống sẽ thông báo lỗi và yêu cầu thử lại.
+- Nếu có lỗi trong quá trình thanh toán qua BankSystem, hệ thống sẽ thông báo lỗi và yêu cầu thử lại sau.
+- Nếu có lỗi trong quá trình in bảng lương qua PrintService, hệ thống sẽ thông báo lỗi và yêu cầu thử lại.
 
 ### Lý do thiết kế:
-- Xử lý bảng lương là bước quan trọng trong hệ thống Payroll System, vì nó đảm bảo tính chính xác và minh bạch trong việc chi trả lương cho nhân viên.
+- Xử lý lương là một phần quan trọng trong hệ thống Payroll, giúp đảm bảo nhân viên nhận được mức lương chính xác theo công việc đã làm. Quá trình xử lý lương bao gồm việc tính toán chính xác số giờ làm việc và các yếu tố khác, sau đó thực hiện thanh toán và in bảng lương cho nhân viên. Hệ thống cần đảm bảo các bước này được thực hiện tự động và chính xác để tiết kiệm thời gian và giảm sai sót.
 
 ### PlantUML Use Case:
-![Use Case](https://www.planttext.com/api/plantuml/png/F8qn2W9134NxdE8p_LPs5hAo5n340uJP849c1f9CiOWdizWZUGLT4Tlt7_-zdklemHQzA76EPZZEvLQ9J79mlQeWdNYnfehpuY4buKv0TydissWjYpj-KW8xBjEE7aJV9mp3OGFO8qsikIk7_6qQfSwVzXi00F__0m00)
+![Biểu đồ](https://www.planttext.com/api/plantuml/png/d5HBRi8m4Dtx5BDi5ro0HKKBNNHH2PKJJEC1N1mxs1DGpjP5ZzGhTF9hI4aQYInGyCnxR_pcAT-VNul863XFhSA4VO17dHhNl3-XEsoAo9Gs1-jW76yed4n2lqV-Wn9-HOSxIidn2XdVCP9I5HNC7c2DHV3MIcj2CHgtcyEBCsoG2RAw1bbTL5Uz5S6Oo1pUY8EX4m6bcVK54PnzEC3Uvq78nd0m6nvBsFBWBYX02s9agFfmYJR9BRBnRWxj7uA85aEXhficf6iSQ68qTiIExlORF5KMHckogAPkj_HkQq9QZJ7Ct6sylwBIE-20BihM1HrLrpccjcvWoQJgPQnA8uuvHMwl9ScGgdIgoxP_H3iGwI4z0LR95FVs_lmtWAJx0okq3CyXIDHr7ae2tRgCIPLOa6TQXYgALAeIHRXRzKbWAzicVQ_8wG79PWEtIRLxc91eNRvDeq7tH1RoKtvOVW000F__0m00)
 
 ---
 
 ## 4. Print Payslip and Reports
 
 ### Mô tả:
-- Ca sử dụng này cho phép quản trị viên và nhân viên xem và in bảng lương hoặc các báo cáo khác liên quan đến tiền lương.
+- Ca sử dụng này cho phép hệ thống in bảng lương và các báo cáo liên quan đến lương cho nhân viên. Hệ thống gửi yêu cầu in bảng lương cho từng nhân viên và các báo cáo tài chính hoặc báo cáo tổng hợp về lương cho quản trị viên.
 
 ### Tác nhân:
-- **Admin**: In báo cáo bảng lương cho tất cả nhân viên.
-- **Employee**: Xem và in bảng lương của chính mình.
+- **Admin**: Quản trị viên, người yêu cầu in bảng lương hoặc báo cáo.
+- **PrintService**: Hệ thống in ấn, thực hiện việc in bảng lương và báo cáo.
 
 ### Luồng chính:
-1. Quản trị viên hoặc nhân viên đăng nhập vào hệ thống.
-2. Tác nhân chọn "Print Payslip and Reports".
-3. Tác nhân chọn thời gian hoặc nhân viên cần in bảng lương.
-4. Hệ thống tạo báo cáo và gửi đến máy in hoặc hiển thị dưới dạng PDF.
+1. Quản trị viên đăng nhập vào hệ thống và chọn "Print Payslips and Reports".
+2. Hệ thống yêu cầu quản trị viên lựa chọn giữa việc in bảng lương cho nhân viên hoặc in báo cáo tài chính.
+3. Quản trị viên chọn bảng lương hoặc báo cáo và cung cấp các tham số như khoảng thời gian, tên báo cáo, vv.
+4. Hệ thống lấy dữ liệu cần thiết từ cơ sở dữ liệu và gửi yêu cầu in cho PrintService.
+5. PrintService tiến hành in bảng lương hoặc báo cáo theo yêu cầu.
+6. Hệ thống thông báo cho quản trị viên khi việc in ấn đã hoàn thành.
 
 ### Luồng thay thế:
-- Nếu hệ thống không thể tạo báo cáo, sẽ có thông báo lỗi và yêu cầu thử lại.
+- Nếu có lỗi khi lấy dữ liệu từ cơ sở dữ liệu (ví dụ: không tìm thấy bảng lương hoặc báo cáo), hệ thống sẽ thông báo lỗi và yêu cầu thử lại.
+- Nếu có lỗi trong quá trình in ấn, hệ thống sẽ thông báo lỗi và yêu cầu thử lại.
 
 ### Lý do thiết kế:
-- In bảng lương và báo cáo là tính năng cần thiết để cung cấp thông tin về lương cho nhân viên, đồng thời giúp admin theo dõi và lưu trữ các báo cáo tài chính của công ty.
+- In bảng lương và báo cáo tài chính giúp cung cấp thông tin chi tiết về mức lương của nhân viên, đồng thời giúp quản trị viên và các bên liên quan theo dõi và kiểm tra các khoản thanh toán. Quá trình này cần được thực hiện chính xác và hiệu quả để đảm bảo tính minh bạch trong việc chi trả lương và báo cáo tài chính.
 
 ### PlantUML Use Case:
-![Use Case](https://www.planttext.com/api/plantuml/png/P8uz2i9048NxESLZ-tHM5f8WrehY0OPaaC3-X9q98OWdi_18Ni54tCfkUFFD--RzVDLgd6qCdhYrbD5qeO-_-H06dsOHeYojSRnvWJlnd9FtkCng4Xpk18mgBUkwp7qqB8ZwVW373cSPKZPrOCLrlw47qLU1gjgj0RRbgbbA2qr5_OyTfrW4Zcg9tVBx1m00__y30000)
+![Biểu đồ](https://www.planttext.com/api/plantuml/png/f59BQiCm5Dph56-PGD83U55YIBV5n2TujPvJKLbIdvvTShOkUgHUeV8dYGkD2LGB8JHlPZI3lZ-_Tb6GfMsimaeyGwuRuwPpmSP9IToPYfGQ4DW-ZjS5dg8r8UPE7oXubfX1IPOgWT3Z4AO1I48yJgWRp5vqKCyWZszG9qP0neQ4EC8g41klDvCAk0HiWAHwMD_nfe9zPpJD19TUiKV15uoKmO643NLqpd6D0JeDgVCaR9VSaqhBRcGisCwBxadlBSMfH-EEQWul-nKJ1IhV19lYwjksrzAVlPZwTF6RaHLQWIVc55wtt6Dzb5J4K0vQ1MdTuL2--W-WGQUX6F58iDh_Ke8QZIMzLkJ-ihrqyG_3IpbpgrtQ-j__0m00__y30000)
 
 ---
 
 ## 5. Manage Payment Methods
 
 ### Mô tả:
-- Ca sử dụng này cho phép quản trị viên quản lý các phương thức thanh toán cho nhân viên, như chuyển khoản ngân hàng hoặc trả lương bằng tiền mặt.
+- Ca sử dụng này cho phép quản trị viên quản lý các phương thức thanh toán cho nhân viên, bao gồm việc thêm, sửa, xóa các phương thức thanh toán như chuyển khoản ngân hàng, trả lương bằng tiền mặt hoặc các phương thức khác. Hệ thống sẽ cập nhật các phương thức thanh toán cho nhân viên theo yêu cầu của quản trị viên.
 
 ### Tác nhân:
 - **Admin**: Quản lý các phương thức thanh toán cho nhân viên.
+- **Payroll System**: Hệ thống quản lý lương, nhận thông tin phương thức thanh toán từ quản trị viên.
 
 ### Luồng chính:
-1. Quản trị viên đăng nhập vào hệ thống và chọn "Manage Payment Methods".
-2. Quản trị viên thêm, sửa hoặc xóa phương thức thanh toán của nhân viên.
-3. Hệ thống cập nhật phương thức thanh toán cho nhân viên.
+1. QQuản trị viên đăng nhập vào hệ thống và chọn "Manage Payment Methods".
+2. Quản trị viên có thể chọn thêm, sửa hoặc xóa một phương thức thanh toán.
+3. Nếu chọn thêm phương thức thanh toán, hệ thống yêu cầu quản trị viên cung cấp các thông tin cần thiết như tên phương thức thanh toán (ví dụ: ngân hàng, tiền mặt, ...).
+4. Nếu chọn sửa phương thức thanh toán, hệ thống hiển thị các thông tin phương thức thanh toán hiện tại và cho phép chỉnh sửa.
+5. Nếu chọn xóa phương thức thanh toán, hệ thống yêu cầu xác nhận việc xóa.
+6. Hệ thống cập nhật phương thức thanh toán vào cơ sở dữ liệu.
+7.Quản trị viên nhận thông báo thành công về việc thay đổi phương thức thanh toán.
 
 ### Luồng thay thế:
-- Nếu phương thức thanh toán không hợp lệ (ví dụ: số tài khoản sai), hệ thống sẽ thông báo lỗi.
+- Nếu phương thức thanh toán không hợp lệ (ví dụ: số tài khoản ngân hàng sai hoặc thông tin không đầy đủ), hệ thống sẽ thông báo lỗi và yêu cầu quản trị viên chỉnh sửa lại thông tin.
+- Nếu có lỗi trong quá trình cập nhật cơ sở dữ liệu (ví dụ: không kết nối được với cơ sở dữ liệu), hệ thống sẽ thông báo lỗi và yêu cầu thử lại.
 
 ### Lý do thiết kế:
-- Quản lý phương thức thanh toán giúp đảm bảo quá trình chi trả lương cho nhân viên diễn ra suôn sẻ và chính xác.
+- Quản lý phương thức thanh toán là một phần quan trọng trong việc xử lý lương cho nhân viên. Phương thức thanh toán có thể thay đổi theo thời gian, do đó việc cho phép quản trị viên cập nhật và duy trì thông tin này giúp hệ thống đảm bảo tính chính xác và sự linh hoạt trong việc chi trả lương cho nhân viên.
 
 ### PlantUML Use Case:
-![Use Case](https://www.planttext.com/api/plantuml/png/P8uz2W8n58JxTueX_M9bOo6xM0S4yG2FvBakv0UIjqLOF9c5H_8AHblRcMy-vlryZLMvw1e3iTDSCFcu9A8YJZdDGM3Et4eE0PTMLQB1Hi1QnN7jfUN4iw0pKPB2YjwphmPSSJtjwK7q4s8OZjy01vZ9-vtDVhcrlncDadp_yW400F__0m00)
+![Biểu đồ](https://www.planttext.com/api/plantuml/png/d9H1Ri8m44NtFiKiGG8EmA825HPTKA6Y7c2m9s3LiLDxGfMpTT4ZzGfrx51K2g9D5b4K-x__Ppp9v_l7B31whaiZKBBpC5Ubjjtp6XllZDaqWQaK8Yt1-0vMQ757SRKaoolYlLDX2Xio91bSnTfP6CoL6i5IQHx18gumGPK5K2R5KA3XQAUW0q4c2OZN9OVMEKMOmXEzrXJuZ0YA6BK9YN0ZxDgxWrRdcOu46D1aDnd15kqBe9Ikjh4CYM4_56HLIjwMrYFwGeVAO0EozhvLzYzXvPGkcck0Oyokz_rxB9qjj2yndIgxQD02_nBmFYkp8gfJfckkFsPj2i-LmbyZ0z4jliOj1X8_132-cQ9En2l-fx8V7RTTpRiXr59I24LjHEhcWpsWqVyOsHDuitTlGDx7xwgCoBWN1aVSvJFCivPFiQiQbYsWjzytfYklY3QaiiyitjhVm1S0003__mC0)
 
 ---
 ## 6. Login
@@ -154,7 +180,7 @@
 - Đăng nhập là bước đầu tiên và quan trọng để bảo mật hệ thống. Nó giúp xác thực người dùng và đảm bảo rằng chỉ những người có quyền mới có thể truy cập vào các tính năng của hệ thống.
 
 ### Planttext UML:
-![](https://www.planttext.com/api/plantuml/png/Z90n3i8m34NtdC8ZIFG23AW334XiYEvkubQHaXGvIH5dO-18N047A0AnuC63_T_tbs-NQnqJSihUATHfO3X4ObKQL2lO3RqDU-BHQbh2FhVU9d1b29h9K4WMNOHP5dr0JmiuOeodWSrSVRB5Quq9MupYqn3RxWmJ11ZCcrEJ3AgV-uzKHlOANO86dJNFC0galky9NEGbjDOKOvVTIqjEpBTX_0_VCCjJl3XWJug2KRKqUTST003__mC0)
+![Biểu đồ](https://www.planttext.com/api/plantuml/png/Z90n3i8m34NtdC8ZIFG23AW334XiYEvkubQHaXGvIH5dO-18N047A0AnuC63_T_tbs-NQnqJSihUATHfO3X4ObKQL2lO3RqDU-BHQbh2FhVU9d1b29h9K4WMNOHP5dr0JmiuOeodWSrSVRB5Quq9MupYqn3RxWmJ11ZCcrEJ3AgV-uzKHlOANO86dJNFC0galky9NEGbjDOKOvVTIqjEpBTX_0_VCCjJl3XWJug2KRKqUTST003__mC0)
 
 ---
 
